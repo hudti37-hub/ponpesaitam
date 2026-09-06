@@ -79,6 +79,26 @@ img {
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
 }
 
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.42);
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 2px;
+  margin: 5px 0;
+  background: #111;
+  border-radius: 2px;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -188,6 +208,15 @@ img {
   line-height: 1.1;
   letter-spacing: -0.04em;
   font-weight: 700;
+}
+
+.hero-tagline {
+  margin: -12px 0 22px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .hero-text p {
@@ -1981,19 +2010,55 @@ img {
   }
 
   .navbar {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 18px 0;
+    position: relative;
+    min-height: 86px;
+    padding: 14px 0;
   }
 
   .brand-wrap {
-    justify-content: center;
-    text-align: center;
+    min-width: 0;
+    flex: 1;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .brand-logo-image {
+    width: min(100%, 310px);
+  }
+
+  .menu-toggle {
+    display: block;
+    flex: 0 0 auto;
   }
 
   .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
+    display: none;
+    position: absolute;
+    top: calc(100% - 1px);
+    right: 0;
+    left: 0;
+    z-index: 10;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 0 0 14px 14px;
+    background: #f3f6e9;
+    box-shadow: 0 16px 28px rgba(20, 45, 28, 0.14);
+  }
+
+  .nav-links.is-open { display: flex; }
+
+  .nav-links a {
+    padding: 12px 14px;
+    border-radius: 8px;
+  }
+
+  .nav-links a:hover { background: rgba(13, 143, 90, 0.1); }
+
+  .login-btn {
+    display: none;
   }
 
   .hero {
@@ -2103,30 +2168,91 @@ img {
     flex-direction: column;
   }
 
-  .nav-links {
-    gap: 12px 18px;
-    font-size: 0.94rem;
-  }
-
-  .brand-name {
-    font-size: 0.9rem;
-  }
-
-  .login-btn {
-    width: 100%;
-    min-width: auto;
+  .container {
+    width: min(100% - 24px, 520px);
   }
 
   .hero-text h1 {
-    font-size: 2.6rem;
+    font-size: clamp(2rem, 10vw, 2.6rem);
+    line-height: 1.02;
   }
 
   .hero-text h2 {
     font-size: 1.7rem;
   }
 
+  .hero-tagline {
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+
   .visual-panel img {
     height: 320px;
+  }
+
+  .leaders-shell {
+    width: calc(100% - 16px);
+  }
+
+  .leaders-row {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 18px 14px 14px;
+  }
+
+  .leader-card,
+  .leader-left,
+  .leader-right {
+    grid-column: 1;
+    flex-direction: row;
+    justify-content: flex-start;
+    min-height: 116px;
+    gap: 12px;
+  }
+
+  .leader-photo {
+    width: 104px;
+    height: 104px;
+  }
+
+  .leader-copy,
+  .leader-right .leader-copy,
+  .leader-left .leader-copy {
+    min-height: 104px;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .leader-copy p {
+    font-size: 0.78rem;
+  }
+
+  .leader-copy h3 {
+    font-size: clamp(1rem, 5vw, 1.35rem);
+    line-height: 1.15;
+  }
+
+  .pillars-banner h2 {
+    font-size: 1.55rem;
+  }
+
+  .curriculum-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 20px 12px 0;
+  }
+
+  .curriculum-card {
+    min-height: 0;
+    padding: 20px 18px;
+  }
+
+  .curriculum-card h3 {
+    font-size: 1.45rem;
+  }
+
+  .curriculum-card p {
+    font-size: 0.95rem;
   }
 
   .profil2-container {
@@ -2303,6 +2429,10 @@ img {
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .footer-bottom a {
+    overflow-wrap: anywhere;
   }
 
   .facility-item p {

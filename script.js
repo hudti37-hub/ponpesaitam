@@ -61,3 +61,25 @@ if (headerElement) {
 	updateHeaderState();
 	window.addEventListener("scroll", updateHeaderState, { passive: true });
 }
+
+const menuToggle = document.querySelector(".menu-toggle");
+const navigation = document.querySelector(".nav-links");
+
+if (menuToggle && navigation) {
+	const closeMenu = () => {
+		navigation.classList.remove("is-open");
+		menuToggle.setAttribute("aria-expanded", "false");
+		menuToggle.setAttribute("aria-label", "Buka menu navigasi");
+	};
+
+	menuToggle.addEventListener("click", () => {
+		const isOpen = navigation.classList.toggle("is-open");
+		menuToggle.setAttribute("aria-expanded", String(isOpen));
+		menuToggle.setAttribute("aria-label", isOpen ? "Tutup menu navigasi" : "Buka menu navigasi");
+	});
+
+	navigation.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+	window.addEventListener("resize", () => {
+		if (window.innerWidth > 900) closeMenu();
+	});
+}
